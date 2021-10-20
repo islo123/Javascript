@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function Tehtävä</title>
+    <style>
+        html{
+            background-color: green;
+        }
+        .msgBox{
+            background-color: blue;
+            color: white;
+        }
+        .btn:hover{
+            transform: rotate(45deg);
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <button>Display Message</button>
+    <button id="buttonPainike">Show Message</button>
+    
+    <script>
+        const btn = document.querySelector('button');
+
+        function displayMessage() {
+
+
+        const html = document.querySelector('html');
+
+        const panel = document.createElement('div');
+        panel.setAttribute('class', 'msgBox');
+        html.appendChild(panel);
+
+        const msg = document.createElement('p');
+        msg.textContent = 'This is a message box';
+        panel.appendChild(msg);
+
+        const closeBtn = document.createElement('button');
+        closeBtn.setAttribute("class", "btn")
+        closeBtn.textContent = 'x';
+        panel.appendChild(closeBtn);
+
+        closeBtn.onclick = function() {
+        panel.parentElement.removeChild(panel);
+        }
+
+
+        }
+btn.onclick = displayMessage;
+        // Seurava tehtävä
+        const thirdBtn = document.getElementById("buttonPainike");
+        const message = function (msgText,msgType){
+            const divElement = document.createElement("div")
+            const html = document.querySelector("html")
+            html.appendChild(divElement)
+            const pElement = document.createElement("p")
+            divElement.appendChild(pElement)
+            pElement.textContent = "Tämä on toka viesti"
+            divElement.style.backgroundColor = "yellow"
+            const btnElement = document.createElement("button")
+            divElement.appendChild(btnElement)
+            btnElement.textContent = "x"
+            btnElement.onclick = function (){
+                divElement.parentElement.removeChild(divElement)
+            }
+        }
+        thirdBtn.onclick = message;
+    
+    </script>
+</body>
+</html>

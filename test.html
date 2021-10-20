@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <script>
+
+
+        let myVarA = 111;
+        if(myVarA === 111){
+            console.log(myVarA)
+        }
+        let myVarB = "";
+        myVarB = (myVarA>222)? "bigger" : "smaller";
+        console.log(myVarB)
+
+
+        myVarC = 5;
+        switch(true){
+            case myVarC < 2:
+            console.log("Pienempi kuin 2")
+            break;
+            case myVarC === 5:
+            console.log("Luku on viisi")
+            break;
+            default:
+                console.log("Luku on joku muu")
+        }
+
+
+        for(let iterator = 0; iterator < 10; iterator++){
+            console.log(iterator)
+        }
+        console.log("-----------")
+        for(let i = 0; i< 10; i+= 2){
+            console.log(i)
+        }
+        console.log("-----------")
+        const person = ["Islam", "Erik", "Amera", "Janne","Bill"]
+        for(let iter= 0; iter < person.length; iter++){
+            console.log(person[iter])
+        }
+        console.log("-----------")
+        for(let o= 0; o < person.length; o++){
+            if(o < 1){continue}// hypä yli
+            if(person[o]=== "Janne"){
+               console.log("break") 
+                break; //Katkaise loopin
+            }
+            console.log(person[o])
+        }
+
+    </script>
+</body>
+</html>

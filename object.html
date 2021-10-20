@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oliot/Object/class</title>
+</head>
+<body>
+    <h3 style="text-align: center;background-color: chartreuse;">Oliot/Object/class</h3>
+    <script>
+        // Class is model,Luokka on sapuna.Miten me tehdän asiat
+        //Object perustu modelin
+
+        // Miksi käytämme inheritance? Specialization --> se käsittle special cases,expceptions(poikeuksia)
+
+        // Grouping(ryhmittely)
+
+        //Mikä on POLYMORPHISM? Ryhimittelty tai inherited classes employ methods samalla nimellä
+
+        //INTERFACE --> sopimus kahden tai useaman osapuolen välillä yleisellä methodilla joita käyttävät kaikki osapuolet.
+        
+        //ENCAPSULATION --> Private(yksityinen) data joka käyttetän vain class objectin joka on piilossa muista.
+
+        //STRUCT -->  Laita kokon liityvät arvot yhten structuren
+
+        // Getter and setter --> manipulate arvon,kun varastoidan ja haetan data.
+
+        // Miten tehdän class, Määritellän asiat, sitten määritellän miten ne asiat teke ja mitä arvo niillä on
+        // Kirjastossa kirja on asia --> class
+        // 1) Miten sunnitella classes ja käyttää case?
+        // Asiakat lajnavat kirjoia
+        // classs: KIRJA,ASIAKKAAT
+        // 2) Sunnitella class:ien sisältö 
+        // KIRJA. author: aleksis kivi, name: seitsemän veljestä. Asiakas: id: 1001, etuNimi: Janne, sukuNimi: Kemppi, laijanusOikeudet: true/false
+        // menän use cases ja lisätän properties jotka perustu use case:eihin
+        //3) Class metodien suunnitellu
+        // Class määrtelly tule ohjelmisto suunnitelma. a) class arvosta tule tietokanta objects. b) Serveri ihmiset aloitavat kirjasotjen ohjelmointi joka yhdistää tietokanta serverin
+        //c) Asiakat aloitavat GUI ohjelman
+        
+        
+        // Ihmiset jotka testavat, käyttä cases ja teke niistä testi suunitteluksi, koska sitä cases tekee
+
+
+
+
+
+        // Create Object
+        function createNewPerson(name) {
+            const obj = {};
+            obj.name = name;
+            obj.greeting = function() {
+                console.log('Hi! I\'m ' + obj.name + '.');
+            };
+            return obj;
+        }
+        const salva = createNewPerson('Salva');
+        salva.name;
+        salva.greeting();
+
+        function Person(name) {
+        // This viita objectin
+        this.name = name;
+        this.greeting = function() {
+        console.log('Hi! I\'m ' + this.name + '.');
+        };
+        }
+        let person1 = new Person("Bob")
+        person1.greeting()
+
+
+    
+        // Tehtävä vaihtu
+        function newPerson(first, last, age, gender, interests) {
+            this.name = {
+                first : first,
+                last : last
+            };
+            this.age = age;
+            this.gender = gender;
+            this.interests = interests;
+            this.bio = function() {
+                console.log(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+            };
+            this.greetings = function() {
+                console.log('Hi! I\'m ' + this.name.first + '.');
+            };
+            }
+            let person2= new newPerson('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+            person2.greetings()
+            person2.bio()
+
+            let result = Object.assign({}, person1) //tehdän sitä objecti ja kopioidan person1
+            console.log(result)
+            result.name = "Janne"               // nimi muutetu Janneksi resultissa mutta person1 pysyi samana
+            console.log(result)
+            console.log(result.greeting())
+
+
+            // Classes and inheritance
+
+            function Brick() {
+            this.width = 10;
+            this.height = 20;
+            }
+            function BlueGlassBrick() {
+                Brick.call(this);
+
+                this.opacity = 0.5;
+                this.color = 'blue';
+            }
+            let brick1 = new Brick()
+            console.log(brick1)
+            console.log(brick1.width)
+
+            //This is class
+
+            class Cat {
+                // kaikki propertit määrittellän constructorissa
+                constructor(name, age){
+                    this.name = name;
+                    this.age = age;
+                }
+                // kaikki methods luodan tässä
+                walks(){
+                    console.log(this.name + " walks!")
+
+                }
+            }
+
+            let jenny = new Cat("Jenny", 2)
+            console.log(jenny)
+            console.log(jenny.walks())
+
+
+
+            class Siamese extends Cat{
+                constructor(name, age,style){
+                    //call parents constructor
+                    super(name,age)// joko this tai super käytetän
+                    this.style = style
+                }
+                // all methods are created here
+                //this overrides parent
+                // purrs ja walk on methodi
+                walks(){
+                    console.log(this.name + " walks like " + this.style)
+                }
+                purrs(){
+                    console.log(this.name + "purrs")
+                }
+            }
+            let galileo = new Siamese("Galileo", 2, "happy")
+            console.log(galileo.walks())
+
+            // POLYMORPHISM
+
+            let catlist = [jenny, galileo]
+
+            for(let i = 0; i<catlist.length; i++){
+                catlist[i].walks()
+            }
+
+
+
+    </script>
+</body>
+</html>

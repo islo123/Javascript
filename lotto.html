@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto harjoitus random numerot</title>
+</head>
+<body>
+    
+    <input id="myInput" type="text"> 
+    <button id="myButton">Press</button>
+
+    </input>
+
+    <script>
+
+        const myRandomGenerator = function (min, max){
+            return Math.floor(Math.random()* max) + min
+        }
+        // document luke html. html muutu olioksi
+        const myInput = document.getElementById("myInput")
+        const myButton = document.getElementById("myButton")
+
+
+        
+        let valueArrayNumber;
+        const myEventHandler = function (){
+            
+            let valueArray = myInput.value.split(",")
+           
+            valueArrayNumber= valueArray.map(function (value){
+                return Number(value)
+            })
+
+            let myLotteryLine = new Set()
+            do {
+                myLotteryLine.add(myRandomGenerator(1,39))
+            }while(myLotteryLine.size < 7)
+            let result = valueArrayNumber.filter(function (value){
+            return myLotteryLine.has(value)
+            })
+            console.log(result)
+            console.log(myLotteryLine)
+        }
+
+
+         myButton.addEventListener("click", myEventHandler)
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object tehtävä</title>
+</head>
+<body>
+
+
+    <script>
+
+        
+
+        class Bird{//Super ei toimi tälläisisä classissa
+            constructor(name){
+                this.name = name;
+            }
+            walks(){
+                console.log("My name is "  + this.name)
+
+            }
+        }
+        let galileo = new Bird("Galielo")
+        console.log(galileo)
+
+        class Fish{// Tälläisisä classissa ei voi käytä super()
+            constructor(name){
+                this.name= name;
+            }
+            walks(){
+                console.log("My name is "  + this.name)
+
+            }
+        }
+        let jenny = new Fish("Jenny")
+        console.log(jenny)
+        
+       
+        class Dog{
+            constructor(name){
+                this.name = name
+            }
+            walks(){
+                console.log("My name is " + this.name)
+            }
+        }
+        let dog = new Dog("Jenni")
+
+        class Shepherd extends Dog{//tässä classissa voi käyttää super tai this kumman halu
+            constructor(name){
+                super(name)
+            }
+            walks(){
+                console.log("My name is "  + this.name)
+
+            }
+        }
+
+        class Cat{
+            constructor(name){
+                this.name = name
+            }
+            walks(){
+                console.log("My name is " + this.name)
+            }
+        }
+        let cat = new Cat("Kissa")
+        class PusPus extends Cat{
+            constructor(name){
+                super(name)
+            }
+            walks(){
+                console.log("My name is " + this.name)
+            }
+        }
+
+        let pusPus = new PusPus("Puspus")
+        console.log(pusPus)
+        let dogShepherd = new Shepherd("Shepherd")
+        console.log(dog)
+        console.log(dogShepherd)
+        console.log(dogShepherd.walks())
+        console.log("------------Lista")
+        let list = [dog, jenny,dogShepherd, galileo]
+        list.push(pusPus,cat)
+        for(let i = 0; i < list.length; i++){
+            list[i].walks()
+        }
+
+        let mySet = new Set() // new Set() suorita saman arvon yhden kerran
+        console.log(mySet)
+        mySet.add(111)
+        mySet.add(222)
+        mySet.add(333)
+        mySet.add(333) // Tämä ei tule konsolin
+        mySet.forEach(function (value){ console.log(value) })
+
+        let myMap = new Map([
+            ["tupu", "qwerty"],
+            ["hupu", "1234"],
+            ["lupu", "ankka"]
+        ])
+
+        if(myMap.has("tupu")){
+            console.log("tupu exists")
+        }else {
+            console.log("No tupu")
+        }
+        myMap.set("tupu", "aaa");
+        myMap.set("qqqq", "bbb")
+
+        let myListResult = list.map(function (value, index, array){// Ensimäinen on arvo, toinen kuinka listanumero ja kolma array. voi nimetä miten vain
+            console.log(value)
+            console.log(index)
+            console.log(array)
+        })
+        let listResult = list.filter(function (value, index, array){
+            return index > 2
+        })
+        console.log(listResult)
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+<body>
+    <script>
+        
+
+
+        const myFunction = function (a ,b){
+            return a + b
+        }
+        myFunction(1,2)
+        console.log(myFunction(1,2))
+
+        console.log("---------Funktio vaihtu")
+
+
+        const yourFunction = function (a = 10){ //Funktion parametrin on asetettu default, jotten kun kutsutan functiota ei tarvi kirjoitta parametrit
+            console.log(a)
+        }
+        yourFunction()//Funktio pitää kutsua jotta console.log tuota consolin a eli 10
+
+        yourFunction(111)// Luo konsolin 111 ja ei poista edellistä funktion kutsua
+
+        console.log("---------Funktio vaihtu")
+
+
+        const thirdFunction = function (a){
+            console.log(a)
+        }
+        thirdFunction()//undefined, koska a ei ole määritelty
+        thirdFunction(2) //toimi. Kkonsolin tulee 2
+
+        // Funkitoita voi nimetä let, const, var
+
+        console.log("---------Funktio vaihtu")
+
+
+        // Anonyymi functiot on hyödyllisiä kun käytetän esim myButton.onClick = function (){console.log}
+        
+        function fourthFunction (a){
+            console.log("one")
+        }
+        fourthFunction() // Konsolin: two
+        function fourthFunction (a,b ){
+            console.log("two")
+        }
+
+        fourthFunction()          //
+        fourthFunction(111)      //Jos function on määritetty sama nimisiksi, vastaus konsolin on two kaikkisa kutsujssa, koska kone luke vain aliman
+        fourthFunction(111,222) //
+
+        // Kun käytetän kaksi script bodyssa ja siellä on functio kone luke vain sen aliman, jos taas scriptissä on let se luke ekan. Jos on scriptissä var se luke aliman
+
+
+        // funktio voi kutsua muita functioita
+
+        // Kaikki jotka määritetään funcktion sisällä ei voi määritä function ulkopuolella eli ei ole globaali
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+</head>
+<body>
+
+    <style>
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+
+
+        async function myFetch(){
+            let response = await fetch("coffee.jpg")
+            if(!response.ok){
+                throw new Error(`Error ${response.status}`)
+            }return response.blob()
+            let myBlob = await response.blob()
+            let objectUrl = URL.createObjectURL(myBlob)
+            let image = document.createElement("img")
+            image.src = objectUrl;
+            document.body.appendChild(image)
+        }
+        myFetch().catch(function (e){
+            console.log("Error: " + e.message)
+        })
+        
+        async function fetchAndDecode(url, type) {
+        let response = await fetch(url);
+
+        let content;
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        } else {
+            if(type === 'blob') {
+            content = await response.blob();
+            } else if(type === 'text') {
+            content = await response.text();
+            }
+        }
+
+        return content;
+        }
+        async function displayContent() {
+            let coffee = fetchAndDecode('coffee.jpg', 'blob');
+            let tea = fetchAndDecode('tea.jpg', 'blob');
+            let description = fetchAndDecode('text.txt', 'text');
+
+            let values = await Promise.all([coffee, tea, description]);
+
+            let objectURL1 = URL.createObjectURL(values[0]);
+            let objectURL2 = URL.createObjectURL(values[1]);
+            let descText = values[2];
+
+            let image1 = document.createElement('img');
+            let image2 = document.createElement('img');
+            image1.src = objectURL1;
+            image2.src = objectURL2;
+            document.body.appendChild(image1);
+            document.body.appendChild(image2);
+
+            let para = document.createElement('p');
+            para.textContent = descText;
+            document.body.appendChild(para);
+        }
+        
+
+        displayContent()
+        .catch((e) =>
+        console.log(e)
+        );
+        
+    </script>
+</body>
+</html>

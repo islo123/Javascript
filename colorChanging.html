@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing Color</title>
+</head>
+
+    <div id="root"></div>
+
+<body>
+    <script>
+
+
+        const divElement = document.getElementById("root")
+        const btnElement= document.createElement("button")
+        btnElement.textContent = "Get color"
+        divElement.appendChild(btnElement)
+
+        const random = function (number){
+            return Math.floor(Math.random ()* (number + 1))
+        }
+
+        btnElement.onclick= function (){
+            const rgba = `rgb(${random(255)},${random(255)}, ${random(255)})`
+            document.body.style.backgroundColor = rgba
+        }
+        
+
+    </script>
+</body>
+</html>
